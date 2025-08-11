@@ -9,7 +9,9 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import os
+import dj_database_url
+ALLOWED_HOSTS = ['itpcart.herokuapp.com', 'localhost', '127.0.0.1']
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -46,6 +48,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -87,7 +90,7 @@ DATABASES = {
     }
 }
 
-
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
@@ -123,9 +126,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT=BASE_DIR/'STATIC'
-STATICFILES_DIRS=['WebShopX/static']
-MEDIA_ROOTURL = 'media/'
+STATIC_ROOT=BASE_DIR / 'staticfiles'
+STATICFILES_DIRS=[BASE_DIR / 'WebShopX' / 'static',]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR/ 'media'#STATIC_URL = "static/"
 
 
