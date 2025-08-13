@@ -12,9 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 import dj_database_url
 from decouple import config
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
 
-
-ALLOWED_HOSTS = ['.herokuapp.com',]
 
 
 from pathlib import Path
