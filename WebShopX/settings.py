@@ -16,13 +16,7 @@ import environ
 
 
 # Initialize environment
-env = environ.Env()
 
-# Load local .env only if it exists (good for local dev)
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
-
-# Read ALLOWED_HOSTS from env vars
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 
 
 
@@ -31,7 +25,13 @@ from pathlib import Path
 from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+env = environ.Env()
 
+# Load local .env only if it exists (good for local dev)
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+# Read ALLOWED_HOSTS from env vars
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 # Quick-start development settings - unsuitable for production
