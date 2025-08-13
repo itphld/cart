@@ -11,10 +11,9 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 import dj_database_url
-ALLOWED_HOSTS = ['localhost',
-    '127.0.0.1',
-    'itp-cart-b835e8f29595.herokuapp.com'
-]
+from decouple import config
+
+ALLOWED_HOSTS = ['*']
 from pathlib import Path
 from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
