@@ -13,7 +13,9 @@ import os
 import dj_database_url
 from decouple import config
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'itp-cart-b835e8f29595.herokuapp.com',
+]
 from pathlib import Path
 from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
