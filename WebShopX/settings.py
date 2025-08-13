@@ -12,7 +12,17 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 import dj_database_url
 from decouple import config
-ALLOWED_HOSTS = ['itp-cart-b835e8f29595.herokuapp.com']
+import environ
+
+
+# Initialize environment
+env = environ.Env()
+
+# Load local .env only if it exists (good for local dev)
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+# Read ALLOWED_HOSTS from env vars
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 
 
 
