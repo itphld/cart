@@ -14,9 +14,7 @@ import dj_database_url
 from decouple import config
 
 
-    ALLOWED_HOSTS = [
-    '.herokuapp.com',
-]
+ALLOWED_HOSTS = ['.herokuapp.com',]
 
 
 from pathlib import Path
