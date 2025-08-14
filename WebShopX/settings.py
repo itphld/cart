@@ -35,7 +35,7 @@ if os.path.exists(env_file):
 # Read ALLOWED_HOSTS from env vars
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 SECRET_KEY = env('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
+
 # Quick-start development settinsgs - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
