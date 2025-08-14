@@ -29,10 +29,10 @@ class Account(AbstractBaseUser):
     last_name=models.CharField(max_length=50)
     email=models.EmailField(max_length=50,unique=True)
     username=models.CharField(max_length=50,unique=True)
-    mobile=models.CharField(max_length=10)
+    mobile=models.CharField(max_length=20)
     join_date=models.DateTimeField(auto_now_add=True)
     last_login=models.DateTimeField(auto_now_add=True)
-    password=models.CharField(max_length=20)
+    password=models.CharField(max_length=50)
 
     #required
     is_admin=models.BooleanField(default=True)
