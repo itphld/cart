@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 import dj_database_url
-from decouple import config
+
 import environ
 
 
@@ -22,19 +22,21 @@ import environ
 
 
 from pathlib import Path
-from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
 
 # Load local .env only if it exists (good for local dev)
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+env_file = os.path.join(BASE_DIR, '.env')
+if os.path.exists(env_file):
+    environ.Env.read_env(env_file)
 
 # Read ALLOWED_HOSTS from env vars
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
-# Quick-start development settings - unsuitable for production
+# Quick-start development settinsgs - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
