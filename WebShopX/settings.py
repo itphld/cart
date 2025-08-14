@@ -38,6 +38,9 @@ if not ALLOWED_HOSTS:
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-*do#b8d3w!7si37r*h8km&_fl@$um!8xuj0882l#zg4m&s^qd)')
 # Quick-start development settinsgs - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
+ALLOWED_HOSTS = [
+    'web-production-8c68.up.railway.app',
+]
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-*do#b8d3w!7si37r*h8km&_fl@$um!8xuj0882l#zg4m&s^qd)'
