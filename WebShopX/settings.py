@@ -25,17 +25,17 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-env = environ.Env()
 
-# Load local .env only if it exists (good for local dev)
-env_file = os.path.join(BASE_DIR, '.env')
-if os.path.exists(env_file):
-    environ.Env.read_env(env_file)
+# ✅ Read ALLOWED_HOSTS from Heroku env
+raw_hosts = os.environ.get('ALLOWED_HOSTS', '')
+ALLOWED_HOSTS = [host.strip() for host in raw_hosts.split(',') if host.strip()]
 
-# Read ALLOWED_HOSTS from env vars
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
-SECRET_KEY = env('SECRET_KEY')
+# Optional: fallback if env not set (local dev only)
+if not ALLOWED_HOSTS:
+    ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
+# ✅ Read secret key from Heroku or use a local dev key
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-*do#b8d3w!7si37r*h8km&_fl@$um!8xuj0882l#zg4m&s^qd)')
 # Quick-start development settinsgs - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
